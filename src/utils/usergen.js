@@ -66,7 +66,7 @@ function User(
   last = null,
   isFavorite = false,
   online = null,
-  id = 'null'
+  id = null
 ) {
   this.id = id || nanoid();
   this.first = first || chance.first();
@@ -88,13 +88,21 @@ export const createUsers = (amount) => {
     users.push(newUser);
   }
 
-  const me = new User(
+  const kek = new User(
     'Kevin',
     'Keckeis',
     true,
     'Online',
     'exfySSspI5NVaXNMYpWir'
   );
-  users.push(me);
+  const hz = new User(
+    'Hans',
+    'Zimmer',
+    true,
+    'Online',
+    'L_ug0Vvzp8Cyd1GRVe_G4'
+  );
+  users.push(kek);
+  users.push(hz);
   return users;
 };
