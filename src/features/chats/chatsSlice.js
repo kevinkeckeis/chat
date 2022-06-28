@@ -1,17 +1,6 @@
 const { createSlice } = require('@reduxjs/toolkit');
 const { subHours, subMinutes, subSeconds } = require('date-fns');
-const LoremIpsum = require('lorem-ipsum').LoremIpsum;
-
-const lorem = new LoremIpsum({
-  sentencesPerParagraph: {
-    max: 8,
-    min: 4,
-  },
-  wordsPerSentence: {
-    max: 16,
-    min: 4,
-  },
-});
+const { loremWords } = require('../../utils/string.func');
 
 const genSendDate = (hours = 0, minutes = 0, seconds = 0) => {
   const date = new Date();
@@ -26,28 +15,28 @@ const initialState = [
   {
     id: '57UMUAUh4GK7G10U8PWmt',
     userId: 'exfySSspI5NVaXNMYpWir',
-    message: lorem.generateWords(20),
+    message: loremWords(20),
     sendAt: genSendDate(1, 0, 10),
     isResponse: false,
   },
   {
     id: '4UmTitqwQuD6Dav-uFpvt',
     userId: 'exfySSspI5NVaXNMYpWir',
-    message: lorem.generateWords(10),
+    message: loremWords(10),
     sendAt: genSendDate(0, 0, 10),
     isResponse: true,
   },
   {
     id: 'CHOPlmL6hJvZFT2BD3wPa-uFpvt',
     userId: 'exfySSspI5NVaXNMYpWir',
-    message: lorem.generateWords(20),
+    message: loremWords(20),
     sendAt: genSendDate(0, 0, 10),
     isResponse: false,
   },
   {
     id: 'cXPrr6q8xQSbiLkipwS7a',
     userId: 'L_ug0Vvzp8Cyd1GRVe_G4',
-    message: lorem.generateWords(30),
+    message: loremWords(30),
     sendAt: genSendDate(0, 0, 10),
     isResponse: false,
   },
