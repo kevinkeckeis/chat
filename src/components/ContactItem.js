@@ -11,7 +11,7 @@ const ContactItem = ({ contact }) => {
   };
   return (
     <NavLink to={'/chats/' + contact.id}>
-      <li className='p-1 flex hover:bg-slate-200 active:bg-slate-400 transition duration-300'>
+      <li className='p-2 flex hover:bg-slate-200 active:bg-slate-400 transition duration-300'>
         <img
           className='w-14 rounded-full'
           src={contact.picture}
