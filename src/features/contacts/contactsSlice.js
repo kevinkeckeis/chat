@@ -8,11 +8,11 @@ const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
   reducers: {
-    addMessage: (state, action) => {},
+    addContact: (state, action) => {},
   },
 });
 
-export const { addMessage } = contactsSlice.actions;
+export const { addContact } = contactsSlice.actions;
 export default contactsSlice.reducer;
 
 export const selectContacts = (state) => {
