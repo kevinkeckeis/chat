@@ -33,3 +33,7 @@ export const selectUsersByIds = (arrayIds) => (state) => {
     state.contacts.find((contacts) => id === contacts.id)
   );
 };
+
+export const selectFullnameByContactId = (contactId) => (state) => {
+  return state.contacts.find((contact) => contact.id === contactId).fullname;
+};

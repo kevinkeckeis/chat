@@ -11,7 +11,7 @@ const ChatList = () => {
   const contactItems = contacts.map((contact) => (
     <ContactItem key={contact.id} contact={contact} />
   ));
-  return <ul className='list-none'>{contactItems}</ul>;
+  return <ul className='flex flex-col'>{contactItems}</ul>;
 };
 
 export default ChatList;
