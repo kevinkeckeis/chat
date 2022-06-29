@@ -9,21 +9,22 @@ const ChatItem = ({ chat }) => {
 
   const ChatMessageFrom = () => (
     <div className='flex'>
-      <div className='m-2 p-2 border rounded-lg basis-9/12 flex-initial'>
+      <div className='m-2 p-2 border rounded-lg basis-9/12'>
         <p className='text-sm font-bold'>{fullname}</p>
-        <p className='text-lg'>{chat.message}</p>
+        <p className='text-lg float-none'>{chat.message}</p>
         <p className='text-xs italic text-gray-500 float-right'>
           {formatDistance(parseJSON(chat.sendAt), new Date(), {
             addSuffix: true,
           })}
         </p>
+        <p>{chat.isRead ? 'read' : 'not read'}</p>
       </div>
     </div>
   );
 
   const ChatMessageTo = () => (
     <div className='flex justify-end'>
-      <div className='m-2 p-2 border rounded-lg basis-9/12 flex-initial self-end'>
+      <div className='m-2 p-2 border rounded-lg basis-9/12 self-end'>
         <p className='text-lg'>{chat.message}</p>
         <p className='text-xs italic text-gray-500 float-right'>
           {formatDistance(parseJSON(chat.sendAt), new Date(), {
