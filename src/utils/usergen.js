@@ -20,7 +20,11 @@ function generateAvatar(textString, foregroundColor, backgroundColor) {
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
 
-  ctx.fillText(textString, canvas.width / 2, canvas.height / 2 + 3);
+  ctx.fillText(
+    textString.toUpperCase(),
+    canvas.width / 2,
+    canvas.height / 2 + 3
+  );
 
   return canvas.toDataURL('image/png');
 }
@@ -61,47 +65,42 @@ const getLastOnlineDate = () => {
 
 const genRandomDate = (from, until) => getLastOnlineDate();
 
-function User(
+export const createUser = (
+  id = null,
   first = null,
   last = null,
-  isFavorite = false,
-  online = null,
-  id = null
-) {
-  this.id = id || nanoid();
-  this.first = first || chance.first();
-  this.last = last || chance.last();
-  this.fullname = `${this.first} ${this.last}`;
-  this.initials = getInitials(this.first, this.last);
-  this.email = `${this.first.toLocaleLowerCase()}.${this.last.toLocaleLowerCase()}@mail.com`;
-  this.picture = generateAvatar(this.initials, 'white', '#ccc');
-  this.online = online || genRandomDate();
-  this.status = false;
-  this.isFavorite = isFavorite || false;
-  this.messages = [];
-}
+  isFavorite
+) => {
+  id = id || nanoid();
+  first = first || chance.first();
+  last = last || chance.last();
+  const initials = (first[0] + last[0]).toUpperCase();
+
+  return {
+    id,
+    first,
+    last,
+    fullname: `${first} ${last}`,
+    initials,
+    email: `${first}.${last}@mail.com`.toLocaleLowerCase(),
+    picture: generateAvatar(initials, 'white', '#ccc'),
+    seenLastDate: genRandomDate(),
+    status: false,
+    isFavorite: isFavorite || false,
+    messages: [],
+  };
+};
 
 export const createUsers = (amount) => {
   const users = [];
   for (let i = 0; i < amount; i++) {
-    const newUser = new User();
+    const newUser = createUser();
     users.push(newUser);
   }
 
-  const kek = new User(
-    'Kevin',
-    'Keckeis',
-    true,
-    'Online',
-    'exfySSspI5NVaXNMYpWir'
-  );
-  const hz = new User(
-    'Hans',
-    'Zimmer',
-    true,
-    'Online',
-    'L_ug0Vvzp8Cyd1GRVe_G4'
-  );
+  const kek = createUser('exfySSspI5NVaXNMYpWir', 'Kevin', 'Keckeis', true);
+  const hz = createUser('VWAtTKMNR-bxvu_0VCkcB', 'Hans', 'Zimmer', true);
+
   users.push(kek);
   users.push(hz);
   return users;
