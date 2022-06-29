@@ -1,23 +1,23 @@
 import React from 'react';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addMessage } from '../features/chats/chatsSlice';
 import { createMessage, createRandomMessage } from '../utils/message.gen';
 
-const ChatInput = ({ contactId }) => {
+const ChatInput = ({ userId }) => {
   const [inputText, setInputText] = useState('');
   const dispatch = useDispatch();
 
   const delayedAnswer = () => {
     setTimeout(() => {
-      const msg = createRandomMessage(contactId);
+      const msg = createRandomMessage(userId);
       dispatch(addMessage(msg));
-    }, 5000);
+    }, 2000);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const msg = createMessage(contactId, inputText);
+    const msg = createMessage(userId, inputText);
     dispatch(addMessage(msg));
     delayedAnswer();
     setInputText('');

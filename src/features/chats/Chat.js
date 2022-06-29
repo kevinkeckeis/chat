@@ -1,14 +1,19 @@
 import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectMessagesByUserId } from './chatsSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  selectMessagesByUserId,
+  setMessageStatus,
+  addMessage,
+} from './chatsSlice';
 import ChatItem from '../../components/ChatItem';
 import ChatInput from '../../components/ChatInput';
+import { createRandomMessage } from '../../utils/message.gen';
 
 const Chat = () => {
-  const { contactId } = useParams();
-  const chatsByUserId = useSelector(selectMessagesByUserId(contactId));
-  const message = useSelector((state) => state.chats);
+  const dispatch = useDispatch();
+  const { userId } = useParams();
+  const chatsByUserId = useSelector(selectMessagesByUserId(userId));
 
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
@@ -16,8 +21,17 @@ const Chat = () => {
   };
 
   useEffect(() => {
+    if (chatsByUserId.length === 0) {
+      setTimeout(() => {
+        const msg = createRandomMessage(userId);
+        dispatch(addMessage(msg));
+      }, 1000);
+    }
+  }, []);
+
+  useEffect(() => {
     scrollToBottom();
-  }, [message]);
+  }, [chatsByUserId]);
 
   scrollToBottom();
 
@@ -27,7 +41,7 @@ const Chat = () => {
   return (
     <div className='flex flex-col p-3'>
       {chats}
-      {<ChatInput contactId={contactId} />}
+      {<ChatInput userId={userId} />}
       <div ref={messagesEndRef}></div>
     </div>
   );

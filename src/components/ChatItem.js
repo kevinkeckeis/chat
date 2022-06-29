@@ -1,10 +1,10 @@
 import React from 'react';
-import { selectFullnameByContactId } from '../features/contacts/contactsSlice';
+import { selectFullnameByUserId } from '../features/users/usersSlice';
 import { useSelector } from 'react-redux';
 import { formatDistance } from 'date-fns';
 
 const ChatItem = ({ chat }) => {
-  const fullname = useSelector(selectFullnameByContactId(chat.userId));
+  const fullname = useSelector(selectFullnameByUserId(chat.userId));
 
   const ChatMessageFrom = () => (
     <div className='flex'>
