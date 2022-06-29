@@ -3,17 +3,21 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectMessagesByUserId,
-  setMessageStatus,
   addMessage,
+  setMessagesRead,
 } from './chatsSlice';
 import ChatItem from '../../components/ChatItem';
 import ChatInput from '../../components/ChatInput';
 import { createRandomMessage } from '../../utils/message.gen';
+import { selectUserById } from '../users/usersSlice';
 
 const Chat = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { userId } = useParams();
   const chatsByUserId = useSelector(selectMessagesByUserId(userId));
+
+  const user = useSelector(selectUserById(userId));
 
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
@@ -28,6 +32,10 @@ const Chat = () => {
       }, 1000);
     }
   }, []);
+
+  useEffect(() => {
+    dispatch(setMessagesRead(userId));
+  }, [chatsByUserId]);
 
   useEffect(() => {
     scrollToBottom();

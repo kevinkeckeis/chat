@@ -1,7 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectUnreadMessagesByUserId } from '../features/chats/chatsSlice';
 
 const ContactItem = ({ user }) => {
+  const unreadMessages = useSelector(selectUnreadMessagesByUserId(user.id));
+
   const online = () => {
     if (user.online === 'Online') {
       return <p className='text-sm text-green-900'>{user.online}</p>;
@@ -21,7 +25,7 @@ const ContactItem = ({ user }) => {
           <p className='text-xl font-bold'>{user.fullname}</p>
           {online()}
         </div>
-        <div className=''></div>
+        <div className=''>{unreadMessages.length}</div>
       </li>
     </NavLink>
   );

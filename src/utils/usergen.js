@@ -87,7 +87,6 @@ export const createUser = (
     seenLastDate: genRandomDate(),
     status: false,
     isFavorite: isFavorite || false,
-    messages: [],
   };
 };
 

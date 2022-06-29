@@ -8,6 +8,7 @@ export const createRandomMessage = (userId, isResponse = false) => ({
   message: loremWords(30),
   sendAt: genSendDate(0, 0, 0),
   isResponse: false,
+  isRead: false,
 });
 
 export const createMessage = (userId, message) => ({
@@ -16,4 +17,5 @@ export const createMessage = (userId, message) => ({
   message,
   sendAt: genSendDate(0, 0, 0),
   isResponse: true,
+  isRead: false,
 });

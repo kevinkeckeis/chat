@@ -29,3 +29,6 @@ export const selectUsersByIds = (arrayIds) => (state) =>
 
 export const selectFullnameByUserId = (userId) => (state) =>
   state.users.find((user) => user.id === userId).fullname;
+
+export const selectUserById = (id) => (state) =>
+  state.users.find((user) => user.id === id);
