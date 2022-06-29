@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectMessagesByUserId,
@@ -25,7 +25,9 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    if (chatsByUserId.length === 0) {
+    if (!user) {
+      navigate(`/`);
+    } else if (chatsByUserId.length === 0) {
       setTimeout(() => {
         const msg = createRandomMessage(userId);
         dispatch(addMessage(msg));
