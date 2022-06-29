@@ -12,6 +12,9 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createUsers } from './utils/usergen';
 import { addUsers } from './features/users/usersSlice';
+import { addMessage } from './features/chats/chatsSlice';
+
+import { createRandomMessage } from './utils/message.gen';
 
 function App() {
   const isMobil = true;
@@ -23,6 +26,16 @@ function App() {
   useEffect(() => {
     if (users.length === 0) dispatch(addUsers(createUsers(100)));
   }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const randomUserId = Math.floor(Math.random() * users.length);
+      const msg = createRandomMessage(users[randomUserId].id);
+      dispatch(addMessage(msg));
+    }, 7000);
+
+    return () => clearInterval(timer);
+  }, [users]);
 
   return (
     <Routes>
