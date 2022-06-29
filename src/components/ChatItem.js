@@ -2,6 +2,7 @@ import React from 'react';
 import { selectFullnameByUserId } from '../features/users/usersSlice';
 import { useSelector } from 'react-redux';
 import { formatDistance } from 'date-fns';
+import parseJSON from 'date-fns/parseJSON';
 
 const ChatItem = ({ chat }) => {
   const fullname = useSelector(selectFullnameByUserId(chat.userId));
@@ -12,7 +13,7 @@ const ChatItem = ({ chat }) => {
         <p className='text-sm font-bold'>{fullname}</p>
         <p className='text-lg'>{chat.message}</p>
         <p className='text-xs italic text-gray-500 float-right'>
-          {formatDistance(chat.sendAt, new Date(), {
+          {formatDistance(parseJSON(chat.sendAt), new Date(), {
             addSuffix: true,
           })}
         </p>
@@ -25,7 +26,7 @@ const ChatItem = ({ chat }) => {
       <div className='m-2 p-2 border rounded-lg basis-9/12 flex-initial self-end'>
         <p className='text-lg'>{chat.message}</p>
         <p className='text-xs italic text-gray-500 float-right'>
-          {formatDistance(chat.sendAt, new Date(), {
+          {formatDistance(parseJSON(chat.sendAt), new Date(), {
             addSuffix: true,
           })}
         </p>

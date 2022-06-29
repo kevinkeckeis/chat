@@ -6,5 +6,5 @@ export const genSendDate = (hours = 0, minutes = 0, seconds = 0) => {
     subMinutes(subHours(date, hours), minutes),
     seconds
   );
-  return dateSub;
+  return JSON.stringify(dateSub);
 };
