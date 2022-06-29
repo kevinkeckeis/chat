@@ -5,9 +5,9 @@ import Navbar from './Navbar';
 
 const LayoutMobil = () => {
   return (
-    <div className='md:ph-5 w-full h-screen md:max-w-screen-lg md:mx-auto flex flex-col'>
+    <div className='md:ph-5 w-full h-screen h-screen-ios md:max-w-screen-lg md:mx-auto flex flex-col'>
       <Navbar />
-      <div className='flex-auto overflow-auto'>
+      <div className='flex-auto overflow-auto overscroll-contain'>
         <Outlet />
       </div>
       <MenuBottom />

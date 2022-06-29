@@ -10,10 +10,10 @@ import { NavLink } from 'react-router-dom';
 
 const MenuBottom = () => {
   const IconContainerClass =
-    'flex flex-col items-center text-gray-500 hover:text-gray-800 w-24 active:text-blue-800';
+    'flex flex-col items-center text-gray-600 hover:text-gray-800 w-24 active:text-blue-800';
   const IconContainerClassActive =
-    'flex flex-col items-center text-blue-500 hover:text-gray-800 w-24 active:text-blue-800';
-  const IconClass = 'h-6 w-6';
+    'flex flex-col items-center text-blue-600 hover:text-gray-800 w-24 active:text-blue-800';
+  const IconClass = 'h-5 w-5';
 
   return (
     <div className='flex justify-center bg-gray-100 p-3'>
