@@ -18,7 +18,7 @@ const MenuBottom = () => {
   return (
     <div className='flex justify-center bg-gray-100 p-3'>
       <NavLink
-        to='/home'
+        to='/'
         className={({ isActive }) =>
           isActive ? IconContainerClassActive : IconContainerClass
         }

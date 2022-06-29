@@ -40,8 +40,7 @@ function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<Navigate to='home' />} />
-        <Route path='home' element={<Home />} />
+        <Route index element={<Home />} />
         <Route path='chats' element={<ChatList />} />
         <Route path='chats/:userId' element={<Chat />} />
         <Route path='groups' element={<GroupsList />} />
