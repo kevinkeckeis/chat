@@ -16,6 +16,8 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-spring": "^9.4.5",
+    "react-virtualized-auto-sizer": "^1.0.6",
+    "react-window": "^1.8.7",
     "reselect": "^4.1.6"
   },
   "scripts": {

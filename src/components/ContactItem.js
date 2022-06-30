@@ -5,9 +5,8 @@ import { selectUnreadMessagesByUserId } from '../features/chats/chatsSlice';
 import ShortMessageHint from './ShortMessageHint';
 import UnreadMessageCounter from './UnreadMessageCounter';
 
-const ContactItem = ({ user }) => {
+const ContactItem = ({ user, style }) => {
   const unreadMessages = useSelector(selectUnreadMessagesByUserId(user.id));
-  console.log(unreadMessages.length);
 
   const online = () => {
     if (user.online === 'Online') {
@@ -18,7 +17,10 @@ const ContactItem = ({ user }) => {
   };
   return (
     <NavLink to={'/chats/' + user.id}>
-      <li className='p-2 flex hover:bg-slate-200 active:bg-slate-400 transition duration-300 gap-3'>
+      <li
+        className='p-2 flex hover:bg-slate-200 active:bg-slate-400 transition duration-300 gap-3'
+        style={style}
+      >
         <div className='w-16 flex-none'>
           <img
             className='h-16 w-full rounded-full'
