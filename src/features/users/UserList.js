@@ -22,7 +22,7 @@ const UserList = () => {
           itemData={users}
           itemCount={users.length}
           itemKey={getItemKey}
-          itemSize={80}
+          itemSize={85}
           height={height}
           width={width}
         >

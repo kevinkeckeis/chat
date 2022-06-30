@@ -18,7 +18,7 @@ const ContactItem = ({ user, style }) => {
   return (
     <NavLink to={'/chats/' + user.id}>
       <li
-        className='p-2 flex hover:bg-slate-200 active:bg-slate-400 transition duration-300 gap-3'
+        className='p-2 flex hover:bg-slate-200 active:bg-slate-400 transition duration-300 gap-3 h-24'
         style={style}
       >
         <div className='w-16 flex-none'>

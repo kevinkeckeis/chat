@@ -11,7 +11,7 @@ const ShortMessageHint = ({ userId }) => {
   const msgLatest = useSelector(selectLastMessageByUserId(userId));
 
   const msgShort = msgLatest
-    ? msgLatest.message.replace(/^(.{100}[^\s]*).*/, '$1')
+    ? msgLatest.message.replace(/^(.{200}[^\s]*).*/, '$1')
     : '';
 
   const [styles, api] = useSpring(() => ({
@@ -38,7 +38,7 @@ const ShortMessageHint = ({ userId }) => {
   }, [msgShort, api]);
 
   return (
-    <a.div style={styles} className='text-sm'>
+    <a.div style={styles} className='text-sm text-clip w-4/5 overflow-hidden'>
       {msgShort}
     </a.div>
   );
