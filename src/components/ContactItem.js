@@ -3,9 +3,11 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectUnreadMessagesByUserId } from '../features/chats/chatsSlice';
 import ShortMessageHint from './ShortMessageHint';
+import UnreadMessageCounter from './UnreadMessageCounter';
 
 const ContactItem = ({ user }) => {
   const unreadMessages = useSelector(selectUnreadMessagesByUserId(user.id));
+  console.log(unreadMessages.length);
 
   const online = () => {
     if (user.online === 'Online') {
@@ -25,13 +27,13 @@ const ContactItem = ({ user }) => {
           ></img>
         </div>
         <div className='flex flex-col'>
-          <p className='text-xl font-bold'>{user.fullname}</p>
+          <div className='flex items-center'>
+            <div className='text-xl font-bold'>{user.fullname}</div>
+            <UnreadMessageCounter count={unreadMessages.length} />
+          </div>
           <ShortMessageHint userId={user.id} />
           {/* {online()} */}
         </div>
-        <div></div>
-
-        <div className=''>{unreadMessages.length}</div>
       </li>
     </NavLink>
   );
