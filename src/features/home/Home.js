@@ -1,7 +1,8 @@
 import React from 'react';
+import ProjectScope from '../../components/ProjectScope';
 
 const Home = () => {
-  return <div>Home</div>;
+  return <ProjectScope />;
 };
 
 export default Home;

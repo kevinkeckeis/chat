@@ -29,7 +29,7 @@ function App() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      const randomUserId = Math.floor(Math.random() * users.length);
+      const randomUserId = Math.floor(Math.random() * 4);
       const msg = createRandomMessage(users[randomUserId].id);
       dispatch(addMessage(msg));
     }, 7000);
@@ -40,8 +40,8 @@ function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path='chats' element={<ChatList />} />
+        <Route path='home' element={<Home />} />
+        <Route path='/' element={<ChatList />} />
         <Route path='chats/:userId' element={<Chat />} />
         <Route path='groups' element={<GroupsList />} />
         <Route path='contacts' element={<UserList />} />

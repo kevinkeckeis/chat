@@ -1,7 +1,8 @@
 import React from 'react';
+import ProjectScope from '../../components/ProjectScope';
 
 const StoriesView = () => {
-  return <div>StoriesView</div>;
+  return <ProjectScope />;
 };
 
 export default StoriesView;

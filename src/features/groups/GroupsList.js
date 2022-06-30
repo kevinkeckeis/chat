@@ -1,8 +1,8 @@
 import React from 'react';
-import Navbar from '../../components/Navbar';
+import ProjectScope from '../../components/ProjectScope';
 
 const GroupsList = () => {
-  return <h1>groups</h1>;
+  return <ProjectScope />;
 };
 
 export default GroupsList;
