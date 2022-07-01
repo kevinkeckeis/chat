@@ -5,6 +5,7 @@ import { selectUsers } from './usersSlice';
 
 import { FixedSizeList as List } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
+import ContactItemSimple from '../../components/ContactItemSimple';
 
 const UserList = () => {
   const users = useSelector(selectUsers);
@@ -28,7 +29,7 @@ const UserList = () => {
         >
           {({ data, index, style }) => {
             return (
-              <ContactItem
+                <ContactItemSimple
                 key={users[index].id}
                 style={style}
                 user={users[index]}
