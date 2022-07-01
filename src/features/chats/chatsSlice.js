@@ -1,3 +1,5 @@
+import { selectUsers } from '../users/usersSlice';
+
 const { createSlice } = require('@reduxjs/toolkit');
 const { max, parseJSON, isEqual } = require('date-fns');
 const { createSelector } = require('reselect');
@@ -49,3 +51,30 @@ export const selectLastMessageByUserId = (userId) =>
       return newestMsg;
     }
   );
+
+export const msgs = (state) => state.chats;
+
+export const selectLastMessageByUsers = () =>
+  createSelector(
+    selectUniqUserIds,
+    msgs,
+    selectUsers,
+    (selectUniqUserIds, msgs, selectUsers) => {
+      const users = selectUniqUserIds.map((userId) => {
+        return selectUsers.find((user) => user.id === userId);
+      });
+      const msgsLast = users.map((user) => {
+        const userMsgs = msgs.filter((msg) => user.id === msg.userId);
+        const dateArray = userMsgs.map((msg) => parseJSON(msg.sendAt));
+        const newestDate = max(dateArray);
+        const newestMsg = userMsgs.find((msg) =>
+          isEqual(parseJSON(msg.sendAt), newestDate)
+        );
+        return { ...user, newestMsgSendAt: newestMsg.sendAt };
+      });
+
+      return msgsLast;
+    }
+  );
+
+export const selectAllLastMessages = () => createSelector(selectUniqUserIds);

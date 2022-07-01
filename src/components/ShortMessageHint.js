@@ -32,6 +32,7 @@ const ShortMessageHint = ({ userId }) => {
           { opacity: 0.8, color: '#000000' },
         ],
         from: { opacity: 0, color: '#000000' },
+        delay: 200,
         config: config.molasses,
       });
     }
