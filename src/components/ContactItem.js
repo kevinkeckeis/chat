@@ -21,20 +21,21 @@ const ContactItem = ({ user, style }) => {
         className='p-2 flex hover:bg-slate-200 active:bg-slate-400 transition duration-300 gap-3'
         style={style}
       >
-        <div className='w-16 flex-none'>
+        <div className='sm:w-16 w-12 flex-none'>
           <img
-            className='h-16 w-full rounded-full'
+            className='sm:h-16 h-12 w-full rounded-full'
             src={user.picture}
             alt={'a picture from ' + user.fullname}
           ></img>
         </div>
         <div className='flex flex-col w-3/4'>
           <div className='flex items-center'>
-            <div className='text-xl font-bold'>{user.fullname}</div>
+            <div className='sm:text-xl text-sm font-bold'>{user.fullname}</div>
             <UnreadMessageCounter count={unreadMessages.length} />
           </div>
           <ShortMessageHint userId={user.id} />
         </div>
+        <div className='w-16 flex-none'></div>
       </li>
     </NavLink>
   );
