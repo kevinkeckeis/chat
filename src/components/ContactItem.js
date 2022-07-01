@@ -6,7 +6,7 @@ import ShortMessageHint from './ShortMessageHint';
 import UnreadMessageCounter from './UnreadMessageCounter';
 
 const ContactItem = ({ user, style }) => {
-  const unreadMessages = useSelector(selectUnreadMessagesByUserId(user.id));
+  const newMsgCount = useSelector(selectUnreadMessagesByUserId(user.id)).length;
 
   const online = () => {
     if (user.online === 'Online') {
@@ -31,7 +31,7 @@ const ContactItem = ({ user, style }) => {
         <div className='flex flex-col w-3/4'>
           <div className='flex items-center'>
             <div className='sm:text-xl text-sm font-bold'>{user.fullname}</div>
-            <UnreadMessageCounter count={unreadMessages.length} />
+            <UnreadMessageCounter count={newMsgCount} />
           </div>
           <ShortMessageHint userId={user.id} />
         </div>

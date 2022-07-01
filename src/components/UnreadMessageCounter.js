@@ -1,10 +1,8 @@
 import React from 'react';
 
 const UnreadMessageCounter = ({ count }) => {
-  return count === 1 ? (
-    <div className='text-xs mx-2'>{count} New</div>
-  ) : count > 1 ? (
-    <div className='text-xs mx-2'>{count} New</div>
+  return count > 0 ? (
+    <div className='text-xs mx-2 text-red-700'>{count} New</div>
   ) : null;
 };
 
