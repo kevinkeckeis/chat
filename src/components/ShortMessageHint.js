@@ -38,7 +38,7 @@ const ShortMessageHint = ({ userId }) => {
   }, [msgShort, api]);
 
   return (
-    <a.div style={styles} className='text-sm text-clip w-4/5 overflow-hidden'>
+    <a.div style={styles} className='line-clamp-2 text-sm '>
       {msgShort}
     </a.div>
   );

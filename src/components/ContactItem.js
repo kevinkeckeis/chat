@@ -18,7 +18,7 @@ const ContactItem = ({ user, style }) => {
   return (
     <NavLink to={'/chats/' + user.id}>
       <li
-        className='p-2 flex hover:bg-slate-200 active:bg-slate-400 transition duration-300 gap-3 h-24'
+        className='p-2 flex hover:bg-slate-200 active:bg-slate-400 transition duration-300 gap-3'
         style={style}
       >
         <div className='w-16 flex-none'>
@@ -28,13 +28,12 @@ const ContactItem = ({ user, style }) => {
             alt={'a picture from ' + user.fullname}
           ></img>
         </div>
-        <div className='flex flex-col'>
+        <div className='flex flex-col w-3/4'>
           <div className='flex items-center'>
             <div className='text-xl font-bold'>{user.fullname}</div>
             <UnreadMessageCounter count={unreadMessages.length} />
           </div>
           <ShortMessageHint userId={user.id} />
-          {/* {online()} */}
         </div>
       </li>
     </NavLink>
