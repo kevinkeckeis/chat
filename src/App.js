@@ -38,10 +38,10 @@ function App() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      const randomUserId = Math.floor(Math.random() * 4);
+      const randomUserId = Math.floor(Math.random() * 10);
       const msg = createRandomMessage(users[randomUserId].id);
       dispatch(addMessage(msg));
-    }, 7000);
+    }, 8000);
 
     return () => clearInterval(timer);
   }, [users]);
