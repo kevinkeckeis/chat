@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import ContactItem from '../../components/ContactItem';
 import { selectUsers } from './usersSlice';
 
 import { FixedSizeList as List } from 'react-window';
@@ -17,27 +16,31 @@ const UserList = () => {
 
   return (
     <AutoSizer>
-      {({ height, width }) => (
-        <List
-          innerElementType='ul'
-          itemData={users}
-          itemCount={users.length}
-          itemKey={getItemKey}
-          itemSize={85}
-          height={height}
-          width={width}
-        >
-          {({ data, index, style }) => {
-            return (
+      {({ height, width }) => {
+        const responsiveHeight = width >= 640 ? 80 : 60;
+
+        return (
+          <List
+            innerElementType='ul'
+            itemData={users}
+            itemCount={users.length}
+            itemKey={getItemKey}
+            itemSize={responsiveHeight}
+            height={height}
+            width={width}
+          >
+            {({ data, index, style }) => {
+              return (
                 <ContactItemSimple
-                key={users[index].id}
-                style={style}
-                user={users[index]}
-              />
-            );
-          }}
-        </List>
-      )}
+                  key={users[index].id}
+                  style={style}
+                  user={users[index]}
+                />
+              );
+            }}
+          </List>
+        );
+      }}
     </AutoSizer>
   );
 };
