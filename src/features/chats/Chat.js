@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -10,6 +10,7 @@ import ChatItem from '../../components/ChatItem';
 import ChatInput from '../../components/ChatInput';
 import { createRandomMessage } from '../../utils/message.gen';
 import { selectUserById } from '../users/usersSlice';
+import BarContext, { setNavTop } from '../../app/barContext';
 
 const Chat = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,11 @@ const Chat = () => {
   const chatsByUserId = useSelector(selectMessagesByUserId(userId));
 
   const user = useSelector(selectUserById(userId));
+
+  const bar = useContext(BarContext);
+  useEffect(() => {
+    setNavTop(bar, user.fullname);
+  }, []);
 
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {

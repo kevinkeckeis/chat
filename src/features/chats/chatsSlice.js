@@ -1,15 +1,8 @@
-const { createSlice } = require('@reduxjs/toolkit');
-const { subHours, subMinutes, subSeconds } = require('date-fns');
-const { loremWords } = require('../../utils/string.func');
+import { selectUsers } from '../users/usersSlice';
 
-const genSendDate = (hours = 0, minutes = 0, seconds = 0) => {
-  const date = new Date();
-  const dateSub = subSeconds(
-    subMinutes(subHours(date, hours), minutes),
-    seconds
-  );
-  return dateSub;
-};
+const { createSlice } = require('@reduxjs/toolkit');
+const { max, parseJSON, isEqual } = require('date-fns');
+const { createSelector } = require('reselect');
 
 export const chatsSlice = createSlice({
   name: 'chats',
@@ -46,4 +39,42 @@ export const selectUnreadMessagesByUserId = (userId) => (state) => {
   return state.chats.filter((chat) => chat.userId === userId && !chat.isRead);
 };
 
-export const selectLastMessageById = (state) => {};
+export const selectLastMessageByUserId = (userId) =>
+  createSelector(
+    (state) => state.chats.filter((chat) => chat.userId === userId),
+    (userMessages) => {
+      const dateArray = userMessages.map((msg) => parseJSON(msg.sendAt));
+      const newestDate = max(dateArray);
+      const newestMsg = userMessages.find((msg) =>
+        isEqual(parseJSON(msg.sendAt), newestDate)
+      );
+      return newestMsg;
+    }
+  );
+
+export const msgs = (state) => state.chats;
+
+export const selectLastMessageByUsers = () =>
+  createSelector(
+    selectUniqUserIds,
+    msgs,
+    selectUsers,
+    (selectUniqUserIds, msgs, selectUsers) => {
+      const users = selectUniqUserIds.map((userId) => {
+        return selectUsers.find((user) => user.id === userId);
+      });
+      const msgsLast = users.map((user) => {
+        const userMsgs = msgs.filter((msg) => user.id === msg.userId);
+        const dateArray = userMsgs.map((msg) => parseJSON(msg.sendAt));
+        const newestDate = max(dateArray);
+        const newestMsg = userMsgs.find((msg) =>
+          isEqual(parseJSON(msg.sendAt), newestDate)
+        );
+        return { ...user, newestMsgSendAt: newestMsg.sendAt };
+      });
+
+      return msgsLast;
+    }
+  );
+
+export const selectAllLastMessages = () => createSelector(selectUniqUserIds);

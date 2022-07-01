@@ -6,5 +6,9 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms')({ strategy: 'base' }), iOSHeight],
+  plugins: [
+    require('@tailwindcss/forms')({ strategy: 'base' }),
+    require('@tailwindcss/line-clamp'),
+    iOSHeight,
+  ],
 };

@@ -1,8 +1,14 @@
-import React from 'react';
-import Navbar from '../../components/Navbar';
+import React, { useEffect } from 'react';
+import BarContext, { setNavTop } from '../../app/barContext';
+import ProjectScope from '../../components/ProjectScope';
 
 const GroupsList = () => {
-  return <h1>groups</h1>;
+  const bar = React.useContext(BarContext);
+  useEffect(() => {
+    setNavTop(bar, 'Groups');
+  }, []);
+
+  return <ProjectScope />;
 };
 
 export default GroupsList;
